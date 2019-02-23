@@ -2,11 +2,11 @@
 #include <string>
 #include <iostream>
 
-class Operation{
+class ArithmeticOperation{
 
     public:
     
-    Operation(){
+    ArithmeticOperation(){
         _numberA = 0;
         _numberB = 0;
     }
@@ -29,28 +29,28 @@ class Operation{
 
 };
 
-class Add:public Operation{
+class Add:public ArithmeticOperation{
     public:
     double GetResult(){
         return _numberA + _numberB;
     }
 };
 
-class Sub:public Operation{
+class Sub:public ArithmeticOperation{
     public:
     double GetResult(){
         return _numberA - _numberB;
     }
 };
 
-class Mul:public Operation{
+class Mul:public ArithmeticOperation{
     public:
     double GetResult(){
         return _numberA * _numberB;
     }
 };
 
-class Del:public Operation{
+class Del:public ArithmeticOperation{
     public:
     double GetResult(){
 
@@ -63,30 +63,30 @@ class Del:public Operation{
 
 class Factory {
     public:
-    virtual std::shared_ptr<Operation> createOperation(){return nullptr;};
+    virtual std::shared_ptr<ArithmeticOperation> createOperation(){return nullptr;};
 };
 
 class AddFactory:public Factory{
     public:
-    std::shared_ptr<Operation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createOperation(){
          return std::make_shared<Add>();
     }
 };
 class SubFactory:public Factory{
     public:
-    std::shared_ptr<Operation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createOperation(){
          return std::make_shared<Sub>();
     }
 };
 class MulFactory:public Factory{
     public:
-    std::shared_ptr<Operation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createOperation(){
          return std::make_shared<Mul>();
     }
 };
 class DelFactory:public Factory{
     public:
-    std::shared_ptr<Operation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createOperation(){
          return std::make_shared<Del>();
     }
 };
@@ -94,7 +94,7 @@ class DelFactory:public Factory{
 int main(){
     
     std::shared_ptr<Factory> addfactory= std::make_shared<AddFactory>();
-    std::shared_ptr<Operation> add =  addfactory->createOperation();
+    std::shared_ptr<ArithmeticOperation> add =  addfactory->createOperation();
     add->SetNumberA(2);
     add->SetNumberB(3);
  

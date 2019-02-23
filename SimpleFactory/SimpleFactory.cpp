@@ -2,11 +2,11 @@
 #include <string>
 #include <iostream>
 
-class Operation{
+class ArithmeticOperation{
 
     public:
     
-    Operation(){
+    ArithmeticOperation(){
         _numberA = 0;
         _numberB = 0;
     }
@@ -29,28 +29,28 @@ class Operation{
 
 };
 
-class Add:public Operation{
+class Add:public ArithmeticOperation{
     public:
     double GetResult(){
         return _numberA + _numberB;
     }
 };
 
-class Sub:public Operation{
+class Sub:public ArithmeticOperation{
     public:
     double GetResult(){
         return _numberA - _numberB;
     }
 };
 
-class Mul:public Operation{
+class Mul:public ArithmeticOperation{
     public:
     double GetResult(){
         return _numberA * _numberB;
     }
 };
 
-class Del:public Operation{
+class Del:public ArithmeticOperation{
     public:
     double GetResult(){
 
@@ -65,7 +65,7 @@ class OperationFactory {
 
     public:
 
-    static std::shared_ptr<Operation> createOperation(char operation){
+    static std::shared_ptr<ArithmeticOperation> createOperation(char operation){
 
         switch (operation)
         {
@@ -89,7 +89,7 @@ class OperationFactory {
 };
 
 int main(){
-    std::shared_ptr<Operation> add = OperationFactory::createOperation('+');
+    std::shared_ptr<ArithmeticOperation> add = OperationFactory::createOperation('+');
     if(add ==nullptr){
         std::cout<<"operation is invalid."<<std::endl;
         return -1;
@@ -99,7 +99,7 @@ int main(){
     std::cout<<"The add result is: "<<add->GetResult()<<std::endl;
 
     try{
-        std::shared_ptr<Operation> del = OperationFactory::createOperation('/');
+        std::shared_ptr<ArithmeticOperation> del = OperationFactory::createOperation('/');
         if(del ==nullptr){
             std::cout<<"operation is invalid."<<std::endl;
             return -1;
