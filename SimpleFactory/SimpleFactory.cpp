@@ -65,7 +65,7 @@ class OperationFactory {
 
     public:
 
-    static std::shared_ptr<ArithmeticOperation> createOperation(char operation){
+    static std::shared_ptr<ArithmeticOperation> createArithmeticOperation(char operation){
 
         switch (operation)
         {
@@ -89,7 +89,7 @@ class OperationFactory {
 };
 
 int main(){
-    std::shared_ptr<ArithmeticOperation> add = OperationFactory::createOperation('+');
+    std::shared_ptr<ArithmeticOperation> add = OperationFactory::createArithmeticOperation('+');
     if(add ==nullptr){
         std::cout<<"operation is invalid."<<std::endl;
         return -1;
@@ -99,7 +99,7 @@ int main(){
     std::cout<<"The add result is: "<<add->GetResult()<<std::endl;
 
     try{
-        std::shared_ptr<ArithmeticOperation> del = OperationFactory::createOperation('/');
+        std::shared_ptr<ArithmeticOperation> del = OperationFactory::createArithmeticOperation('/');
         if(del ==nullptr){
             std::cout<<"operation is invalid."<<std::endl;
             return -1;

@@ -63,30 +63,30 @@ class Del:public ArithmeticOperation{
 
 class Factory {
     public:
-    virtual std::shared_ptr<ArithmeticOperation> createOperation(){return nullptr;};
+    virtual std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){return nullptr;};
 };
 
 class AddFactory:public Factory{
     public:
-    std::shared_ptr<ArithmeticOperation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Add>();
     }
 };
 class SubFactory:public Factory{
     public:
-    std::shared_ptr<ArithmeticOperation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Sub>();
     }
 };
 class MulFactory:public Factory{
     public:
-    std::shared_ptr<ArithmeticOperation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Mul>();
     }
 };
 class DelFactory:public Factory{
     public:
-    std::shared_ptr<ArithmeticOperation> createOperation(){
+    std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Del>();
     }
 };
@@ -94,7 +94,7 @@ class DelFactory:public Factory{
 int main(){
     
     std::shared_ptr<Factory> addfactory= std::make_shared<AddFactory>();
-    std::shared_ptr<ArithmeticOperation> add =  addfactory->createOperation();
+    std::shared_ptr<ArithmeticOperation> add =  addfactory->createArithmeticOperation();
     add->SetNumberA(2);
     add->SetNumberB(3);
  
