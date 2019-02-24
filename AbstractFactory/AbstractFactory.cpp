@@ -11,8 +11,8 @@
 
  class UserOperation{
      public:
-     virtual void Insert(const User &user){}
-     virtual User GetUser(int id){return User();}
+     virtual void Insert(const User &user) = 0;
+     virtual User GetUser(int id) = 0;
  };
 
  class MongoUserOperation :public UserOperation{
@@ -47,8 +47,8 @@
 
  class DepartmentOperation{
      public:
-     virtual void Insert(const Department &user){}
-     virtual Department GetDepartment(int id){return Department();}
+     virtual void Insert(const Department &user) = 0;
+     virtual Department GetDepartment(int id) = 0;
  };
 
  class MongoDepartmentOperation :public DepartmentOperation{
@@ -75,8 +75,8 @@
 
  class Factory{
      public:
-     virtual std::shared_ptr<UserOperation> createUserOperation(){return nullptr;}
-     virtual std::shared_ptr<DepartmentOperation> createDepartmentOperation(){return nullptr;}
+     virtual std::shared_ptr<UserOperation> createUserOperation() = 0;
+     virtual std::shared_ptr<DepartmentOperation> createDepartmentOperation() = 0;
  };
 
  class MySQLFactory:public Factory{

@@ -10,9 +10,7 @@ class ArithmeticOperation{
         _numberA = 0;
         _numberB = 0;
     }
-    virtual double GetResult(){
-        return 0;
-    }
+    virtual double GetResult() = 0;
 
     void SetNumberA(double a){
         _numberA =a;
@@ -61,30 +59,30 @@ class Del:public ArithmeticOperation{
     }
 };
 
-class Factory {
+class IFactory {
     public:
-    virtual std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){return nullptr;};
+    virtual std::shared_ptr<ArithmeticOperation> createArithmeticOperation() = 0;
 };
 
-class AddFactory:public Factory{
+class AddFactory:public IFactory{
     public:
     std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Add>();
     }
 };
-class SubFactory:public Factory{
+class SubFactory:public IFactory{
     public:
     std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Sub>();
     }
 };
-class MulFactory:public Factory{
+class MulFactory:public IFactory{
     public:
     std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Mul>();
     }
 };
-class DelFactory:public Factory{
+class DelFactory:public IFactory{
     public:
     std::shared_ptr<ArithmeticOperation> createArithmeticOperation(){
          return std::make_shared<Del>();
@@ -93,7 +91,7 @@ class DelFactory:public Factory{
 
 int main(){
     
-    std::shared_ptr<Factory> addfactory= std::make_shared<AddFactory>();
+    std::shared_ptr<IFactory> addfactory= std::make_shared<AddFactory>();
     std::shared_ptr<ArithmeticOperation> add =  addfactory->createArithmeticOperation();
     add->SetNumberA(2);
     add->SetNumberB(3);

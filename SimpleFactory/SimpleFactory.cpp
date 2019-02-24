@@ -10,9 +10,7 @@ class ArithmeticOperation{
         _numberA = 0;
         _numberB = 0;
     }
-    virtual double GetResult(){
-        return 0;
-    }
+    virtual double GetResult()=0;
 
     void SetNumberA(double a){
         _numberA =a;

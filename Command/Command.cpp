@@ -19,7 +19,7 @@ class Command{
     Command(const Receiver &rec){
         _receiver = rec;
     }
-    virtual void Execute(){};
+    virtual void Execute() = 0;
 };
 
 class CookRiceCommand: public Command{
