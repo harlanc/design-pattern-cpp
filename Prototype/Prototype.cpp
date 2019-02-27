@@ -13,7 +13,7 @@ class ICloneable{
 
 class WorkExperience{
     public:
-
+    WorkExperience(){}
     WorkExperience(std::string &&date,std::string company){
         std::cout<<"constructor"<<std::endl;
         _workDate = std::move(date);
@@ -39,7 +39,7 @@ class WorkExperience{
     void setCompany(const std::string &company){
         _company = company;
     }
-    private:
+    
 
     std::string _workDate;
     std::string _company;
@@ -52,6 +52,11 @@ class Resume : public ICloneable<Resume>{
     std::string _age;
     std::shared_ptr<WorkExperience> _work;
     public:
+
+    Resume(){
+        _work = std::make_shared<WorkExperience>();
+
+    }
 
     Resume(std::string &name,std::string &sex,std::string &age,std::string &date,std::string &company){
 
@@ -76,10 +81,22 @@ class Resume : public ICloneable<Resume>{
         rv->_name = this->_name;
         rv->_age = this->_age;
         rv->_sex = this->_sex;
+        
 
-        *(rv->_work) = *(this->_work);
+        rv->setCompany(this->_work->_company);
+        rv->setWorkDate(this->_work->_workDate);
+
+        //*(rv->_work) = *(this->_work);
 
         return rv;
+    }
+
+    void PrintResume(){
+        std::cout<<"Name: "<<_name<<std::endl;
+        std::cout<<"Age: "<<_age<<std::endl;
+        std::cout<<"Sex: "<<_sex<<std::endl;
+        std::cout<<"Company: "<<_work->_company<<std::endl;
+        std::cout<<"Date: "<<_work->_workDate<<std::endl;
     }
 };
 
@@ -88,7 +105,26 @@ class Resume : public ICloneable<Resume>{
 int main()
 {
 
-    Resume resume(std::string("David"),std::string("male"),std::string("23"),std::string("HUAWEI"),std::string("2007-2009"));
+    std::string name("David");
+    std::string sex("male");
+    std::string age("18");
+    std::string company("huawei");
+    std::string date("2014-2019");
+
+    Resume resume(name,sex,age,date,company);
+
+    resume.PrintResume();
+
+    std::shared_ptr<Resume> resume2 = resume.clone();
+
+    resume2->PrintResume();
+
+    resume2->setWorkDate("2013-2019");
+    
+    resume.PrintResume();
+    resume2->PrintResume();
+
+    return 0;
 
     //std::
     
