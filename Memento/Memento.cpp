@@ -1,3 +1,4 @@
+//compile using  g++ Memento.cpp -Wc++11-extensions -std=c++11
 #include <string>
 #include <iostream>
 #include <memory>
@@ -5,7 +6,7 @@
 
 class Memento{
     public:
-    Memento(const std::string state){
+    Memento(const std::string &state){
         _state = state;
     }
 
@@ -20,7 +21,7 @@ class Memento{
 
 class Originator{
     public:
-    void setState(const std::string state){
+    void setState(const std::string &state){
         _state = state;
     }
 
@@ -32,7 +33,7 @@ class Originator{
         return std::make_shared<Memento>(_state);
     }
     
-    void getStateFromMemento( std::shared_ptr<Memento> memento){
+    void getStateFromMemento(const std::shared_ptr<Memento> &memento){
         _state = memento->getState();
     }
     private:
