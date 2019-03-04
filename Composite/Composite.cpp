@@ -89,7 +89,15 @@ int main(){
     root->Add(std::make_shared<HRDepartment>("总公司人力资源总部"));
     root->Add(std::make_shared<ResearchDepartment>("总公司研发总部"));
 
+    std::shared_ptr<ConcreteCompany>  comp1 = std::make_shared<ConcreteCompany>("河北总公司");
+    comp1->Add(std::make_shared<HRDepartment>("河北分公司人力资源部"));
+    comp1->Add(std::make_shared<ResearchDepartment>("河北分公司研发部"));
+
+    root->Add(comp1);
+
     root->Display(1);
+
+    root->LineOfDuty();
 
     return 0;
 }
